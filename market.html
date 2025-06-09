@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E-Market – Market</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f1f8e9;
+    }
+
+    header {
+      background-color: #2e7d32;
+      padding: 15px;
+      text-align: center;
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .container {
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .product {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      width: 280px;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .product img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .product h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+    }
+
+    .product p {
+      margin: 4px 0;
+      font-size: 14px;
+      color: #444;
+    }
+
+    button,
+    select,
+    input,
+    textarea {
+      font-family: inherit;
+    }
+
+    .btn-small {
+      font-size: 12px;
+      padding: 4px 7px;
+      margin-left: 5px;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .btn-small.red {
+      background: #c62828;
+    }
+
+    .comment-toggle {
+      cursor: pointer;
+      color: #2e7d32;
+      font-weight: bold;
+      margin-top: 8px;
+      user-select: none;
+    }
+
+    .comments-container {
+      display: none;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 8px;
+      background: #f0f0f0;
+      padding: 8px;
+      border-radius: 6px;
+    }
+
+    .comment-item {
+      border-bottom: 1px solid #ccc;
+      padding: 6px 0;
+    }
+
+    .comment-text {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .comment-actions button {
+      font-size: 11px;
+      padding: 2px 5px;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+
+    .comment-actions button.red {
+      background: #c62828;
+    }
+
+    .reply-box {
+      margin-left: 12px;
+      margin-top: 4px;
+    }
+
+    .reply-box textarea {
+      width: 100%;
+      height: 40px;
+      resize: none;
+      padding: 4px;
+      font-size: 13px;
+    }
+
+    .reply-box button {
+      margin-top: 4px;
+      font-size: 12px;
+      padding: 3px 8px;
+    }
+
+    .add-comment {
+      margin-top: 10px;
+    }
+
+    .add-comment textarea {
+      width: 100%;
+      height: 40px;
+      resize: none;
+      padding: 6px;
+      font-size: 14px;
+    }
+
+    .add-comment button {
+      margin-top: 5px;
+      background: #2e7d32;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .controls {
+      margin: 10px 20px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .controls input,
+    .controls select {
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    .sell-form {
+      max-width: 350px;
+      background: #e8f5e9;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px auto;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .sell-form h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #2e7d32;
+    }
+
+    .sell-form label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    .sell-form input,
+    .sell-form select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .sell-form button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 10px;
+      background: #2e7d32;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .error {
+      color: #c62828;
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #2e7d32;
+      color: white;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      .product {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>🛒 E-Market – Market Page</header>
+
+  <div class="controls">
+    <input type="text" id="searchInput" placeholder="Search by product name" />
+    <select id="panchayathFilter">
+      <option value="all">All Panchayaths</option>
+      <option value="Kurampala">Kurampala</option>
+      <option value="Palamel">Palamel</option>
+    </select>
+  </div>
+
+  <div class="container" id="product-list"></div>
+
+  <footer>&copy; 2025 E-Market Kerala</footer>
+
+  <script>
+    // Elements
+    const list = document.getElementById("product-list");
+    const searchInput = document.getElementById("searchInput");
+    const panchayathFilter = document.getElementById("panchayathFilter");
+
+    const sellForm = document.getElementById("sellForm");
+    const formError = document.getElementById("formError");
+
+    // Helper: get valid (non-expired) products
+    function getValidProducts() {
+      const now = Date.now();
+      let all = JSON.parse(localStorage.getItem("products")) || [];
+
+      // Remove expired products based on uploadTime + duration
+      all = all.filter(p => {
+        if (!p.uploadTime || !p.duration) return true; // if no duration, keep
+        return now < p.uploadTime + p.duration;
+      });
+      localStorage.setItem("products", JSON.stringify(all));
+      return all;
+    }
+
+    // Render product list
+    function renderProducts() {
+      list.innerHTML = '';
+      const query = searchInput.value.toLowerCase();
+      const panchayath = panchayathFilter.value;
+      const products = getValidProducts();
+
+      products.forEach((p, index) => {
+        if (
+          p.name.toLowerCase().includes(query) &&
+          (panchayath === 'all' || p.panchayath === panchayath)
+        ) {
+          let comments = JSON.parse(localStorage.getItem("comments_" + index)) || [];
+          // Sort comments newest first
+          comments = comments.sort((a, b) => b.time - a.time);
+
+          const prodDiv = document.createElement("div");
+          prodDiv.className = "product";
+          prodDiv.innerHTML = `
+          ${p.img ? `<img src="${p.img}" alt="Product">` : ""}
+          <h3>${p.name}</h3>
+          <p><strong>₹${p.price}</strong></p>
+          <p>📍 ${p.location || "Unknown"}</p>
+          <p>📞 ${p.phone || "N/A"}</p>
+          <p><i class='bx bxs-map'></i> ${p.panchayath}</p>
+
+          <div class="comment-toggle" onclick="toggleComments(this)">💬 Comments (${comments.length}) ▼</div>
+          <div class="comments-container">
+            ${comments.map((c, i) => `
+              <div class="comment-item" data-comment-index="${i}">
+                <div class="comment-text" id="comment-text-${index}-${i}">${escapeHtml(c.text)}</div>
+                <div class="comment-actions">
+                  <button onclick="editComment(${index}, ${i}, this)">Edit</button>
+                  <button class="red" onclick="deleteComment(${index}, ${i})">Delete</button>
+                </div>
+                ${c.reply ? `<div class="reply-box"><strong>👮 Admin reply:</strong> ${escapeHtml(c.reply)}</div>` : ''}
+                <div class="reply-box">
+                  <textarea placeholder="Reply as admin..." id="reply-textarea-${index}-${i}"></textarea>
+                  <button onclick="addReply(${index}, ${i})">Reply</button>
+                </div>
+              </div>
+            `).join('')}
+            <div class="add-comment">
+              <textarea id="new-comment-${index}" placeholder="Write a comment..."></textarea>
+              <button onclick="addComment(${index})">Post</button>
+            </div>
+          </div>
+        `;
+          list.appendChild(prodDiv);
+        }
+      });
+    }
+
+    // Escape HTML to prevent XSS
+    function escapeHtml(text) {
+      return text.replace(/[&<>"']/g, function (m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
+      });
+    }
+
+    // Toggle comment visibility
+    function toggleComments(el) {
+      const container = el.nextElementSibling;
+      if (container.style.display === 'block') {
+        container.style.display = 'none';
+        el.textContent = `💬 Comments (${container.children.length - 1}) ▼`;
+      } else {
+        container.style.display = 'block';
+        el.textContent = `💬 Comments (${container.children.length - 1}) ▲`;
+      }
+    }
+
+    // Add comment
+    function addComment(prodIndex) {
+      const textarea = document.getElementById(`new-comment-${prodIndex}`);
+      const text = textarea.value.trim();
+      if (!text) return alert("Comment cannot be empty.");
+
+      let comments = JSON.parse(localStorage.getItem("comments_" + prodIndex)) || [];
+      comments.push({ text, reply: null, time: Date.now() });
+      localStorage.setItem("comments_" + prodIndex, JSON.stringify(comments));
+      textarea.value = "";
+      renderProducts();
+    }
+
+    // Delete comment
+    function deleteComment(prodIndex, commentIndex) {
+      if (!confirm("Delete this comment?")) return;
+      let comments = JSON.parse(localStorage.getItem("comments_" + prodIndex)) || [];
+      comments.splice(commentIndex, 1);
+      localStorage.setItem("comments_" + prodIndex, JSON.stringify(comments));
+      renderProducts();
+    }
+
+    // Edit comment
+    function editComment(prodIndex, commentIndex, btn) {
+      const commentDiv = btn.closest('.comment-item');
+      const commentTextDiv = commentDiv.querySelector('.comment-text');
+      if (btn.textContent === "Edit") {
+        // Switch to textarea for editing
+        const currentText = commentTextDiv.textContent;
+        commentTextDiv.innerHTML = `<textarea id="edit-textarea-${prodIndex}-${commentIndex}" style="width:100%;height:50px;">${currentText}</textarea>`;
+        btn.textContent = "Save";
+      } else {
+        // Save edited text
+        const textarea = document.getElementById(`edit-textarea-${prodIndex}-${commentIndex}`);
+        const newText = textarea.value.trim();
+        if (!newText) return alert("Comment cannot be empty.");
+
+        let comments = JSON.parse(localStorage.getItem("comments_" + prodIndex)) || [];
+        comments[commentIndex].text = newText;
+        localStorage.setItem("comments_" + prodIndex, JSON.stringify(comments));
+        renderProducts();
+      }
+    }
+
+    // Add admin reply
+    function addReply(prodIndex, commentIndex) {
+      const textarea = document.getElementById(`reply-textarea-${prodIndex}-${commentIndex}`);
+      const replyText = textarea.value.trim();
+      if (!replyText) return alert("Reply cannot be empty.");
+
+      let comments = JSON.parse(localStorage.getItem("comments_" + prodIndex)) || [];
+      if (comments[commentIndex]) {
+        comments[commentIndex].reply = replyText;
+        localStorage.setItem("comments_" + prodIndex, JSON.stringify(comments));
+        renderProducts();
+      }
+    }
+
+    // Sell form submission
+    sellForm.addEventListener('submit', e => {
+      e.preventDefault();
+      formError.textContent = '';
+
+      const name = sellForm.productName.value.trim();
+      const price = parseFloat(sellForm.productPrice.value);
+      const img = sellForm.productImage.value.trim();
+      const panchayath = sellForm.panchayath.value;
+      const location = sellForm.location.value.trim();
+      const phone = sellForm.phone.value.trim();
+      const durationMins = parseInt(sellForm.duration.value);
+
+      // Validation
+      if (!name || !price || !img || !panchayath || !durationMins) {
+        formError.textContent = "Please fill all required fields properly.";
+        return;
+      }
+      if (phone && !/^\+91\d{}$/.test(phone)) {
+        formError.textContent = "Phone number must be 10 digits starting with +91.";
+        return;
+      }
+      if (durationMins < 1 || durationMins > 43200) {
+        formError.textContent = "Duration must be between 1 and 43200 minutes.";
+        return;
+      }
+
+      const products = JSON.parse(localStorage.getItem("products")) || [];
+      products.push({
+        name, price, img, panchayath, location,
+        phone: phone || "N/A",
+        uploadTime: Date.now(),
+        duration: durationMins * 60 * 1000 // convert minutes to ms
+      });
+
+      localStorage.setItem("products", JSON.stringify(products));
+      sellForm.reset();
+      sellForm.panchayath.value = "Kurampala"; // reset default
+      alert("Product uploaded successfully!");
+      renderProducts();
+    });
+
+    // Filters events
+    searchInput.addEventListener("input", renderProducts);
+    panchayathFilter.addEventListener("change", renderProducts);
+
+    // Initial render
+    window.addEventListener("load", renderProducts);
+  </script>
+
+</body>
+
+</html>

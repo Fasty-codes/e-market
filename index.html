@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>E-Market Kurampala</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: sans-serif;
+    }
+    body {
+      background: #f3f4f6;
+      color: #111;
+    }
+    nav {
+      background: #2e7d32; /* Kerala green */
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-left, .nav-right {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-left strong { color: white; font-size: 20px; }
+    .nav-links {
+      display: flex;
+      gap: 15px;
+    }
+    .nav-links button, .nav-links a {
+      background: transparent;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: none;
+    }
+    .nav-right i {
+      cursor: pointer; font-size: 20px; color: white;
+    }
+    .dropdown {
+      background: white; padding: 5px; border-radius: 5px;
+    }
+    .menu-toggle {
+      display: none; font-size: 28px; color: white;
+    }
+    .nav-mobile {
+      display: none; flex-direction: column; width: 100%; background: #388e3c;
+    }
+    .nav-mobile button, .nav-mobile a {
+      padding: 10px;
+      text-align: left;
+      border: none;
+      background: none;
+      color: white;
+      width: 100%;
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+      .nav-mobile.show { display: flex; }
+    }
+
+    section { display: none; padding: 20px; }
+    .visible { display: block !important; }
+    .full-screen {
+      height: 100vh; overflow-y: auto;
+    }
+    .popup {
+      position: fixed; top: 20px; left: 50%;
+      transform: translateX(-50%);
+      background: #333; color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      display: none;
+      z-index: 999;
+    }
+    .hero {
+      padding: 60px 20px;
+      text-align: center;
+      background: #e8f5e9;
+    }
+    .hero h1 { margin-bottom: 10px; font-size: 2rem; }
+    .hero p { margin-bottom: 20px; font-size: 1rem; }
+    .hero button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      border: none;
+      background: #2e7d32;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .hero button:disabled {
+      background: #9e9e9e; cursor: not-allowed;
+    }
+    .form-container {
+      max-width: 400px; margin: auto; padding: 20px;
+      background: white; border-radius: 10px;
+    }
+    .form-container h2 {
+      text-align: center; margin-bottom: 15px;
+    }
+    .form-container input, .form-container select {
+      width: 100%; padding: 10px; margin: 8px 0;
+      border: 1px solid #ccc; border-radius: 5px;
+    }
+    .product-list {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center; padding: 10px;
+    }
+    .product {
+      background: white; padding: 10px;
+      border: 1px solid #ccc; border-radius: 10px;
+      width: 200px;
+    }
+    .product img {
+      width: 100%; height: 150px; object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="popup" id="popup-msg"></div>
+
+  <nav>
+    <div class="nav-left">
+      <strong>E-Market</strong>
+      <select id="panchayath-select" class="dropdown">
+        <option selected>Kurampala</option>
+        <option>Palamel</option>
+      </select>
+    </div>
+
+    <div class="nav-links">
+      <button onclick="showSection('home')">Home</button>
+      <button onclick="showSection('sell')" id="sell-btn" disabled>Sell</button>
+      <button><a href="market.html">Market</a></button>
+      <button onclick="showSection('contact')">Contact</button>
+    </div>
+
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <i class='bx bx-menu'></i>
+    </div>
+
+    <div class="nav-right">
+      <i class='bx bx-log-in' id="login-btn"></i>
+      <i class='bx bx-user-plus' id="signup-btn"></i>
+      <i class='bx bx-log-out' id="logout-btn" style="display:none;"></i>
+    </div>
+  </nav>
+
+  <div class="nav-mobile" id="mobile-nav">
+    <button onclick="showSection('home')">Home</button>
+    <button onclick="showSection('sell')" id="mobile-sell-btn" disabled>Sell</button>
+    <button onclick="showSection('contact')">Contact</button>
+    <button id="mobile-login-btn">Login</button>
+    <button id="mobile-signup-btn">Signup</button>
+    <button id="mobile-logout-btn" style="display:none;">Logout</button>
+  </div>
+
+  <section id="home" class="visible">
+    <div class="hero">
+      <h1>Welcome to E-Market</h1>
+      <p>Buy, sell and exchange goods in your Panchayath</p>
+      <button onclick="showSection('market')">Explore</button>
+      <button id="hero-sell-btn" disabled onclick="showSection('sell')">Sell</button>
+    </div>
+    <div class="product-list" id="product-list"></div>
+  </section>
+
+  <section id="login" class="full-screen">
+    <div class="form-container">
+      <h2>Login</h2>
+      <input type="text" id="login-name" placeholder="Name" />
+      <input type="password" id="login-pass" placeholder="Password" />
+      <button onclick="login()">Login</button>
+    </div>
+  </section>
+
+  <section id="signup" class="full-screen">
+    <div class="form-container">
+      <h2>Signup</h2>
+      <input type="text" id="signup-name" placeholder="Name" />
+      <select id="signup-panchayath">
+        <option>Kurampala</option>
+        <option>Palamel</option>
+      </select>
+      <input type="text" id="signup-place" placeholder="Place" />
+      <input type="password" id="signup-pass" placeholder="Password" />
+      <button onclick="signup()">Signup</button>
+    </div>
+  </section>
+
+  <section id="sell" class="full-screen">
+    <div class="form-container">
+      <h2>Sell Product</h2>
+      <input type="file" id="product-img" accept="image/*" />
+      <input type="text" id="product-name" placeholder="Product Name" required />
+      <input type="number" id="product-price" placeholder="Price (₹)" min="0" />
+      <input type="text" id="product-location" placeholder="Location" required />
+      <input type="tel" id="product-phone" placeholder="Phone Number (10 digits)" pattern="[0-9]{10}" maxlength="10" required />
+      <button onclick="uploadProduct()">Upload</button>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="form-container">
+      <h2>Contact</h2>
+      <p>Email us at emarket@kerala.gov.in</p>
+    </div>
+  </section>
+
+  <script>
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let currentUser = localStorage.getItem("currentUser");
+
+    const showPopup = (msg) => {
+      const popup = document.getElementById("popup-msg");
+      popup.textContent = msg;
+      popup.style.display = "block";
+      setTimeout(() => popup.style.display = "none", 2500);
+    };
+
+    const showSection = (id) => {
+      document.querySelectorAll("section").forEach(s => s.classList.remove("visible"));
+      document.getElementById(id).classList.add("visible");
+      // Close mobile nav if open on section change
+      document.getElementById("mobile-nav").classList.remove("show");
+    };
+
+    const toggleMenu = () => {
+      document.getElementById("mobile-nav").classList.toggle("show");
+    };
+
+    const updateUI = () => {
+      const isLoggedIn = !!currentUser;
+      document.getElementById("logout-btn").style.display = isLoggedIn ? "inline" : "none";
+      document.getElementById("login-btn").style.display = !isLoggedIn ? "inline" : "none";
+      document.getElementById("signup-btn").style.display = !isLoggedIn ? "inline" : "none";
+
+      document.getElementById("mobile-login-btn").style.display = !isLoggedIn ? "block" : "none";
+      document.getElementById("mobile-signup-btn").style.display = !isLoggedIn ? "block" : "none";
+      document.getElementById("mobile-logout-btn").style.display = isLoggedIn ? "block" : "none";
+
+      document.getElementById("sell-btn").disabled = !isLoggedIn;
+      document.getElementById("hero-sell-btn").disabled = !isLoggedIn;
+      document.getElementById("mobile-sell-btn").disabled = !isLoggedIn;
+    };
+
+    const login = () => {
+      const name = document.getElementById("login-name").value.trim();
+      const pass = document.getElementById("login-pass").value.trim();
+      const user = users.find(u => u.name === name && u.pass === pass);
+      if (user) {
+        currentUser = name;
+        localStorage.setItem("currentUser", name);
+        showPopup("Login successful");
+        showSection("home");
+        updateUI();
+      } else {
+        showPopup("Invalid login");
+      }
+    };
+
+    const signup = () => {
+      const name = document.getElementById("signup-name").value.trim();
+      const pass = document.getElementById("signup-pass").value.trim();
+      const place = document.getElementById("signup-place").value.trim();
+      const panchayath = document.getElementById("signup-panchayath").value;
+      if (!name || !pass || !place) {
+        showPopup("Please fill in all fields");
+        return;
+      }
+      // Check if user already exists
+      if (users.some(u => u.name === name)) {
+        showPopup("User name already exists");
+        return;
+      }
+      users.push({ name, pass, place, panchayath });
+      localStorage.setItem("users", JSON.stringify(users));
+      showPopup("Signup successful");
+      showSection("login");
+    };
+
+    const logout = () => {
+      if (confirm("Do you want to logout?")) {
+        currentUser = null;
+        localStorage.removeItem("currentUser");
+        showPopup("Logged out");
+        updateUI();
+        showSection("home");
+      }
+    };
+
+    const uploadProduct = () => {
+      const img = document.getElementById("product-img").files[0];
+      const name = document.getElementById("product-name").value.trim();
+      const price = document.getElementById("product-price").value.trim();
+      const location = document.getElementById("product-location").value.trim();
+      let phone = document.getElementById("product-phone").value.trim();
+
+      // Validate phone number length (10 digits only)
+      if (!/^\d{10}$/.test(phone)) {
+        showPopup("Enter a valid 10-digit phone number");
+        return;
+      }
+
+      // Add +91 prefix before storing/displaying
+      phone = "+91 " + phone;
+
+      if (!name || !location) {
+        showPopup("Please fill in all required fields");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function () {
+        const product = { img: reader.result || null, name, price, location, phone, uploadedAt: Date.now() };
+        const products = JSON.parse(localStorage.getItem("products")) || [];
+        products.push(product);
+        localStorage.setItem("products", JSON.stringify(products));
+        showPopup("Product uploaded");
+        showSection("home");
+
+        // Clear form after upload
+        document.getElementById("product-img").value = "";
+        document.getElementById("product-name").value = "";
+        document.getElementById("product-price").value = "";
+        document.getElementById("product-location").value = "";
+        document.getElementById("product-phone").value = "";
+
+        displayProducts();
+      };
+      if (img) reader.readAsDataURL(img);
+      else reader.onload();
+    };
+
+    // Display products on home page
+    const displayProducts = () => {
+      const list = document.getElementById("product-list");
+      const products = JSON.parse(localStorage.getItem("products")) || [];
+
+      // Optional: Remove expired products (after 30 days)
+      const now = Date.now();
+      const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
+      const filteredProducts = products.filter(p => now - p.uploadedAt < THIRTY_DAYS_MS);
+      if (filteredProducts.length !== products.length) {
+        localStorage.setItem("products", JSON.stringify(filteredProducts));
+      }
+
+      list.innerHTML = "";
+      filteredProducts.forEach(p => {
+        list.innerHTML += `
+          <div class="product">
+            ${p.img ? `<img src="${p.img}">` : ""}
+            <h4>${p.name}</h4>
+            <p>₹${p.price || "N/A"}</p>
+            <p>${p.location}</p>
+            <p>📞 ${p.phone}</p>
+          </div>`;
+      });
+    };
+
+    // Attach event listeners to nav icons/buttons
+    document.getElementById("login-btn").onclick = () => showSection("login");
+    document.getElementById("signup-btn").onclick = () => showSection("signup");
+    document.getElementById("logout-btn").onclick = logout;
+
+    document.getElementById("mobile-login-btn").onclick = () => showSection("login");
+    document.getElementById("mobile-signup-btn").onclick = () => showSection("signup");
+    document.getElementById("mobile-logout-btn").onclick = logout;
+
+    updateUI();
+    displayProducts();
+  </script>
+</body>
+</html>
