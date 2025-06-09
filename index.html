@@ -1,36 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>E-Market Kurampala</title>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <style>
     * {
-      margin: 0; padding: 0; box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: sans-serif;
     }
+
     body {
       background: #f3f4f6;
       color: #111;
     }
+
     nav {
-      background: #2e7d32; /* Kerala green */
+      background: #2e7d32;
       padding: 10px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
     }
-    .nav-left, .nav-right {
-      display: flex; align-items: center; gap: 10px;
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
-    .nav-left strong { color: white; font-size: 20px; }
+
+    .nav-left strong {
+      color: white;
+      font-size: 20px;
+    }
+
+    .dropdown {
+      background: white;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
     .nav-links {
       display: flex;
+      align-items: center;
       gap: 15px;
     }
-    .nav-links button, .nav-links a {
+
+    .nav-links button,
+    .nav-links a {
       background: transparent;
       color: white;
       border: none;
@@ -38,53 +61,87 @@
       font-size: 16px;
       text-decoration: none;
     }
-    .nav-right i {
-      cursor: pointer; font-size: 20px; color: white;
-    }
-    .dropdown {
-      background: white; padding: 5px; border-radius: 5px;
-    }
+
     .menu-toggle {
-      display: none; font-size: 28px; color: white;
-    }
-    .nav-mobile {
-      display: none; flex-direction: column; width: 100%; background: #388e3c;
-    }
-    .nav-mobile button, .nav-mobile a {
-      padding: 10px;
-      text-align: left;
-      border: none;
-      background: none;
+      display: none;
+      font-size: 28px;
       color: white;
-      width: 100%;
-    }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .menu-toggle { display: block; }
-      .nav-mobile.show { display: flex; }
     }
 
-    section { display: none; padding: 20px; }
-    .visible { display: block !important; }
-    .full-screen {
-      height: 100vh; overflow-y: auto;
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background: #388e3c;
     }
+
+    .nav-mobile button {
+      padding: 10px;
+      text-align: left;
+      background: none;
+      border: none;
+      color: white;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-mobile.show {
+        display: flex;
+      }
+    }
+
+    section {
+      display: none;
+      padding: 20px;
+    }
+
+    .visible {
+      display: block !important;
+    }
+
+    .full-screen {
+      height: 100vh;
+      overflow-y: auto;
+    }
+
     .popup {
-      position: fixed; top: 20px; left: 50%;
+      position: fixed;
+      top: 20px;
+      left: 50%;
       transform: translateX(-50%);
-      background: #333; color: #fff;
+      background: #333;
+      color: #fff;
       padding: 10px 20px;
       border-radius: 5px;
       display: none;
       z-index: 999;
     }
+
     .hero {
       padding: 60px 20px;
       text-align: center;
       background: #e8f5e9;
     }
-    .hero h1 { margin-bottom: 10px; font-size: 2rem; }
-    .hero p { margin-bottom: 20px; font-size: 1rem; }
+
+    .hero h1 {
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+
+    .hero p {
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
     .hero button {
       margin: 0 10px;
       padding: 10px 20px;
@@ -94,34 +151,58 @@
       border-radius: 5px;
       cursor: pointer;
     }
+
     .hero button:disabled {
-      background: #9e9e9e; cursor: not-allowed;
+      background: #9e9e9e;
+      cursor: not-allowed;
     }
+
     .form-container {
-      max-width: 400px; margin: auto; padding: 20px;
-      background: white; border-radius: 10px;
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
     }
+
     .form-container h2 {
-      text-align: center; margin-bottom: 15px;
+      text-align: center;
+      margin-bottom: 15px;
     }
-    .form-container input, .form-container select {
-      width: 100%; padding: 10px; margin: 8px 0;
-      border: 1px solid #ccc; border-radius: 5px;
+
+    .form-container input,
+    .form-container select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
+
     .product-list {
-      display: flex; flex-wrap: wrap; gap: 10px;
-      justify-content: center; padding: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      padding: 10px;
     }
+
     .product {
-      background: white; padding: 10px;
-      border: 1px solid #ccc; border-radius: 10px;
+      background: white;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
       width: 200px;
     }
+
     .product img {
-      width: 100%; height: 150px; object-fit: cover;
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
     }
   </style>
 </head>
+
 <body>
   <div class="popup" id="popup-msg"></div>
 
@@ -132,23 +213,19 @@
         <option selected>Kurampala</option>
         <option>Palamel</option>
       </select>
-    </div>
-
-    <div class="nav-links">
-      <button onclick="showSection('home')">Home</button>
-      <button onclick="showSection('sell')" id="sell-btn" disabled>Sell</button>
-      <button><a href="market.html">Market</a></button>
-      <button onclick="showSection('contact')">Contact</button>
+      <div class="nav-links">
+        <button onclick="showSection('home')">Home</button>
+        <button onclick="showSection('sell')" id="sell-btn" disabled>Sell</button>
+        <a href="market.html">Market</a>
+        <button onclick="showSection('contact')">Contact</button>
+        <button id="login-btn" onclick="showSection('login')">Login</button>
+        <button id="signup-btn" onclick="showSection('signup')">Signup</button>
+        <button id="logout-btn" onclick="logout()" style="display:none;">Logout</button>
+      </div>
     </div>
 
     <div class="menu-toggle" onclick="toggleMenu()">
       <i class='bx bx-menu'></i>
-    </div>
-
-    <div class="nav-right">
-      <i class='bx bx-log-in' id="login-btn"></i>
-      <i class='bx bx-user-plus' id="signup-btn"></i>
-      <i class='bx bx-log-out' id="logout-btn" style="display:none;"></i>
     </div>
   </nav>
 
@@ -201,7 +278,8 @@
       <input type="text" id="product-name" placeholder="Product Name" required />
       <input type="number" id="product-price" placeholder="Price (₹)" min="0" />
       <input type="text" id="product-location" placeholder="Location" required />
-      <input type="tel" id="product-phone" placeholder="Phone Number (10 digits)" pattern="[0-9]{10}" maxlength="10" required />
+      <input type="tel" id="product-phone" placeholder="Phone Number (10 digits)" pattern="[0-9]{10}" maxlength="10"
+        required />
       <button onclick="uploadProduct()">Upload</button>
     </div>
   </section>
@@ -227,7 +305,6 @@
     const showSection = (id) => {
       document.querySelectorAll("section").forEach(s => s.classList.remove("visible"));
       document.getElementById(id).classList.add("visible");
-      // Close mobile nav if open on section change
       document.getElementById("mobile-nav").classList.remove("show");
     };
 
@@ -237,17 +314,17 @@
 
     const updateUI = () => {
       const isLoggedIn = !!currentUser;
-      document.getElementById("logout-btn").style.display = isLoggedIn ? "inline" : "none";
-      document.getElementById("login-btn").style.display = !isLoggedIn ? "inline" : "none";
-      document.getElementById("signup-btn").style.display = !isLoggedIn ? "inline" : "none";
-
-      document.getElementById("mobile-login-btn").style.display = !isLoggedIn ? "block" : "none";
-      document.getElementById("mobile-signup-btn").style.display = !isLoggedIn ? "block" : "none";
-      document.getElementById("mobile-logout-btn").style.display = isLoggedIn ? "block" : "none";
-
       document.getElementById("sell-btn").disabled = !isLoggedIn;
-      document.getElementById("hero-sell-btn").disabled = !isLoggedIn;
       document.getElementById("mobile-sell-btn").disabled = !isLoggedIn;
+      document.getElementById("hero-sell-btn").disabled = !isLoggedIn;
+
+      document.getElementById("login-btn").style.display = isLoggedIn ? "none" : "inline";
+      document.getElementById("signup-btn").style.display = isLoggedIn ? "none" : "inline";
+      document.getElementById("logout-btn").style.display = isLoggedIn ? "inline" : "none";
+
+      document.getElementById("mobile-login-btn").style.display = isLoggedIn ? "none" : "block";
+      document.getElementById("mobile-signup-btn").style.display = isLoggedIn ? "none" : "block";
+      document.getElementById("mobile-logout-btn").style.display = isLoggedIn ? "block" : "none";
     };
 
     const login = () => {
@@ -274,7 +351,6 @@
         showPopup("Please fill in all fields");
         return;
       }
-      // Check if user already exists
       if (users.some(u => u.name === name)) {
         showPopup("User name already exists");
         return;
@@ -302,13 +378,11 @@
       const location = document.getElementById("product-location").value.trim();
       let phone = document.getElementById("product-phone").value.trim();
 
-      // Validate phone number length (10 digits only)
       if (!/^\d{10}$/.test(phone)) {
         showPopup("Enter a valid 10-digit phone number");
         return;
       }
 
-      // Add +91 prefix before storing/displaying
       phone = "+91 " + phone;
 
       if (!name || !location) {
@@ -325,7 +399,6 @@
         showPopup("Product uploaded");
         showSection("home");
 
-        // Clear form after upload
         document.getElementById("product-img").value = "";
         document.getElementById("product-name").value = "";
         document.getElementById("product-price").value = "";
@@ -338,12 +411,10 @@
       else reader.onload();
     };
 
-    // Display products on home page
     const displayProducts = () => {
       const list = document.getElementById("product-list");
       const products = JSON.parse(localStorage.getItem("products")) || [];
 
-      // Optional: Remove expired products (after 30 days)
       const now = Date.now();
       const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
       const filteredProducts = products.filter(p => now - p.uploadedAt < THIRTY_DAYS_MS);
@@ -364,17 +435,9 @@
       });
     };
 
-    // Attach event listeners to nav icons/buttons
-    document.getElementById("login-btn").onclick = () => showSection("login");
-    document.getElementById("signup-btn").onclick = () => showSection("signup");
-    document.getElementById("logout-btn").onclick = logout;
-
-    document.getElementById("mobile-login-btn").onclick = () => showSection("login");
-    document.getElementById("mobile-signup-btn").onclick = () => showSection("signup");
-    document.getElementById("mobile-logout-btn").onclick = logout;
-
     updateUI();
     displayProducts();
   </script>
 </body>
+
 </html>

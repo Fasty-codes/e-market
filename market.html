@@ -4,236 +4,251 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>E-Market – Market</title>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <title>E‑Market Kurampala – Market</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f1f8e9;
+      background: #f0f8f5;
+      color: #222;
     }
 
     header {
-      background-color: #2e7d32;
-      padding: 15px;
-      text-align: center;
+      background-color: #008000;
       color: white;
-      font-size: 1.5rem;
-    }
-
-    .container {
-      padding: 20px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .product {
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      width: 280px;
-      padding: 10px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
       position: relative;
     }
 
-    .product img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 5px;
+    header h1 {
+      font-size: 1.6rem;
+      margin: 0;
     }
 
-    .product h3 {
-      margin: 10px 0 5px;
-      font-size: 18px;
-    }
-
-    .product p {
-      margin: 4px 0;
-      font-size: 14px;
-      color: #444;
-    }
-
-    button,
-    select,
-    input,
-    textarea {
-      font-family: inherit;
-    }
-
-    .btn-small {
-      font-size: 12px;
-      padding: 4px 7px;
-      margin-left: 5px;
-      background: #2e7d32;
-      color: white;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-
-    .btn-small.red {
-      background: #c62828;
-    }
-
-    .comment-toggle {
-      cursor: pointer;
-      color: #2e7d32;
-      font-weight: bold;
-      margin-top: 8px;
-      user-select: none;
-    }
-
-    .comments-container {
-      display: none;
-      max-height: 200px;
-      overflow-y: auto;
-      margin-top: 8px;
-      background: #f0f0f0;
-      padding: 8px;
-      border-radius: 6px;
-    }
-
-    .comment-item {
-      border-bottom: 1px solid #ccc;
-      padding: 6px 0;
-    }
-
-    .comment-text {
-      font-size: 14px;
-      margin-bottom: 5px;
-    }
-
-    .comment-actions button {
-      font-size: 11px;
-      padding: 2px 5px;
-      background: #2e7d32;
-      color: white;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-      margin-right: 5px;
-    }
-
-    .comment-actions button.red {
-      background: #c62828;
-    }
-
-    .reply-box {
-      margin-left: 12px;
-      margin-top: 4px;
-    }
-
-    .reply-box textarea {
-      width: 100%;
-      height: 40px;
-      resize: none;
-      padding: 4px;
-      font-size: 13px;
-    }
-
-    .reply-box button {
-      margin-top: 4px;
-      font-size: 12px;
-      padding: 3px 8px;
-    }
-
-    .add-comment {
-      margin-top: 10px;
-    }
-
-    .add-comment textarea {
-      width: 100%;
-      height: 40px;
-      resize: none;
-      padding: 6px;
-      font-size: 14px;
-    }
-
-    .add-comment button {
-      margin-top: 5px;
-      background: #2e7d32;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    .controls {
-      margin: 10px 20px;
+    nav {
       display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
+      gap: 1rem;
     }
 
-    .controls input,
-    .controls select {
-      padding: 8px;
-      font-size: 16px;
-    }
-
-    .sell-form {
-      max-width: 350px;
-      background: #e8f5e9;
-      padding: 15px;
-      border-radius: 8px;
-      margin: 20px auto;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .sell-form h2 {
-      text-align: center;
-      margin-bottom: 15px;
-      color: #2e7d32;
-    }
-
-    .sell-form label {
-      display: block;
-      margin: 10px 0 5px;
-    }
-
-    .sell-form input,
-    .sell-form select {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid #aaa;
-      border-radius: 4px;
-      font-size: 14px;
-    }
-
-    .sell-form button {
-      margin-top: 15px;
-      width: 100%;
-      padding: 10px;
-      background: #2e7d32;
-      border: none;
+    nav a {
+      text-decoration: none;
       color: white;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 6px;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
     }
 
-    .error {
-      color: #c62828;
-      font-size: 13px;
-      margin-top: 5px;
+    nav a:hover {
+      background: white;
+      color: #008000;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .grid {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .card img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+    }
+
+    .info {
+      padding: 1rem;
+      flex-grow: 1;
+    }
+
+    .info h3 {
+      margin: 0 0 0.5rem;
+      color: #256124;
+    }
+
+    .meta {
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+      color: #555;
+    }
+
+    .actions {
+      padding: 0 1rem 1rem;
+    }
+
+    .actions button {
+      background: #008000;
+      color: white;
+      border: none;
+      padding: 0.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+      width: 100%;
+    }
+
+    .comments {
+      display: none;
+      max-height: 300px;
+      overflow-y: auto;
+      border-top: 1px solid #ddd;
+      padding: 0.5rem 1rem;
+    }
+
+    .comments.visible {
+      display: block;
+    }
+
+    .comment {
+      margin-bottom: 0.8rem;
+    }
+
+    .comment .reply {
+      margin-left: 1rem;
+      font-size: 0.9rem;
+      border-left: 2px solid #ccc;
+      padding-left: 0.6rem;
+      margin-top: 0.4rem;
+    }
+
+    .comment-form {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .comment-form input {
+      flex-grow: 1;
+      padding: 0.4rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .comment-form button {
+      padding: 0.4rem 0.6rem;
+      background: #008000;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      background: #2e7d32;
-      color: white;
-      margin-top: 40px;
+      padding: 1rem;
+      color: #777;
+      font-size: 0.9rem;
     }
 
-    @media (max-width: 600px) {
-      .product {
-        width: 90%;
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #008000;
+        padding: 1rem;
+        z-index: 10;
+      }
+
+      nav a {
+        padding: 0.8rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      nav.show {
+        display: flex;
+      }
+
+      .comment-form {
+        flex-direction: column;
+      }
+
+      .comment-form input {
+        margin-bottom: 0.5rem;
+      }
+
+      .actions button {
+        font-size: 0.9rem;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+        /* stack cards in a single column */
+        padding: 0 0.5rem;
+        gap: 1rem;
+      }
+
+      .card {
+        border-radius: 6px;
+      }
+
+      .info {
+        padding: 0.8rem;
+      }
+
+      .info h3 {
+        font-size: 1.1rem;
+      }
+
+      .meta {
+        font-size: 0.85rem;
+      }
+
+      .actions button,
+      .comment-form button {
+        font-size: 0.9rem;
+      }
+
+      .comment-form {
+        flex-direction: column;
+      }
+
+      .comment-form input {
+        width: 100%;
+        font-size: 0.95rem;
+      }
+
+      .comment .reply {
+        margin-left: 0.6rem;
+        padding-left: 0.4rem;
+        border-left-width: 1px;
+      }
+
+      .comments {
+        font-size: 0.95rem;
+        padding: 0.6rem;
       }
     }
   </style>
@@ -241,224 +256,149 @@
 
 <body>
 
-  <header>🛒 E-Market – Market Page</header>
+  <header>
+    <h1>E-Market</h1>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="market.html">Market</a>
+      <a href="index.html">Contact</a>
+    </nav>
+  </header>
 
-  <div class="controls">
-    <input type="text" id="searchInput" placeholder="Search by product name" />
-    <select id="panchayathFilter">
-      <option value="all">All Panchayaths</option>
-      <option value="Kurampala">Kurampala</option>
-      <option value="Palamel">Palamel</option>
-    </select>
-  </div>
 
-  <div class="container" id="product-list"></div>
+  <main>
+    <h2 style="text-align:center; padding-top:1rem;">Available Products</h2>
+    <div class="grid" id="grid"></div>
+  </main>
 
-  <footer>&copy; 2025 E-Market Kerala</footer>
+  <footer>&copy; 2025 E‑Market</footer>
 
   <script>
-    // Elements
-    const list = document.getElementById("product-list");
-    const searchInput = document.getElementById("searchInput");
-    const panchayathFilter = document.getElementById("panchayathFilter");
-
-    const sellForm = document.getElementById("sellForm");
-    const formError = document.getElementById("formError");
-
-    // Helper: get valid (non-expired) products
-    function getValidProducts() {
-      const now = Date.now();
-      let all = JSON.parse(localStorage.getItem("products")) || [];
-
-      // Remove expired products based on uploadTime + duration
-      all = all.filter(p => {
-        if (!p.uploadTime || !p.duration) return true; // if no duration, keep
-        return now < p.uploadTime + p.duration;
-      });
-      localStorage.setItem("products", JSON.stringify(all));
-      return all;
+    function toggleMenu() {
+      document.getElementById('nav-links').classList.toggle('show');
     }
 
-    // Render product list
-    function renderProducts() {
-      list.innerHTML = '';
-      const query = searchInput.value.toLowerCase();
-      const panchayath = panchayathFilter.value;
-      const products = getValidProducts();
+    const PRODUCTS_KEY = 'products';
+    const COMMENTS_KEY = 'comments';
+    const THIRTY_MS = 30 * 24 * 60 * 60 * 1000;
 
-      products.forEach((p, index) => {
-        if (
-          p.name.toLowerCase().includes(query) &&
-          (panchayath === 'all' || p.panchayath === panchayath)
-        ) {
-          let comments = JSON.parse(localStorage.getItem("comments_" + index)) || [];
-          // Sort comments newest first
-          comments = comments.sort((a, b) => b.time - a.time);
+    // Load current user
+    const currentUser = localStorage.getItem('currentUser');
 
-          const prodDiv = document.createElement("div");
-          prodDiv.className = "product";
-          prodDiv.innerHTML = `
-          ${p.img ? `<img src="${p.img}" alt="Product">` : ""}
-          <h3>${p.name}</h3>
-          <p><strong>₹${p.price}</strong></p>
-          <p>📍 ${p.location || "Unknown"}</p>
-          <p>📞 ${p.phone || "N/A"}</p>
-          <p><i class='bx bxs-map'></i> ${p.panchayath}</p>
+    // Clean expired products
+    const now = Date.now();
+    let products = JSON.parse(localStorage.getItem(PRODUCTS_KEY) || '[]')
+      .filter(p => now - p.uploadedAt < THIRTY_MS);
+    localStorage.setItem(PRODUCTS_KEY, JSON.stringify(products));
 
-          <div class="comment-toggle" onclick="toggleComments(this)">💬 Comments (${comments.length}) ▼</div>
-          <div class="comments-container">
-            ${comments.map((c, i) => `
-              <div class="comment-item" data-comment-index="${i}">
-                <div class="comment-text" id="comment-text-${index}-${i}">${escapeHtml(c.text)}</div>
-                <div class="comment-actions">
-                  <button onclick="editComment(${index}, ${i}, this)">Edit</button>
-                  <button class="red" onclick="deleteComment(${index}, ${i})">Delete</button>
-                </div>
-                ${c.reply ? `<div class="reply-box"><strong>👮 Admin reply:</strong> ${escapeHtml(c.reply)}</div>` : ''}
-                <div class="reply-box">
-                  <textarea placeholder="Reply as admin..." id="reply-textarea-${index}-${i}"></textarea>
-                  <button onclick="addReply(${index}, ${i})">Reply</button>
-                </div>
-              </div>
-            `).join('')}
-            <div class="add-comment">
-              <textarea id="new-comment-${index}" placeholder="Write a comment..."></textarea>
-              <button onclick="addComment(${index})">Post</button>
-            </div>
-          </div>
-        `;
-          list.appendChild(prodDiv);
-        }
-      });
+    const commentsDb = JSON.parse(localStorage.getItem(COMMENTS_KEY) || '{}');
+    const grid = document.getElementById('grid');
+
+    function formatDate(ts) {
+      return new Date(ts).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
     }
 
-    // Escape HTML to prevent XSS
-    function escapeHtml(text) {
-      return text.replace(/[&<>"']/g, function (m) {
-        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m];
-      });
+    if (!products.length) {
+      grid.innerHTML = '<p style="text-align:center">No products available.</p>';
     }
 
-    // Toggle comment visibility
-    function toggleComments(el) {
-      const container = el.nextElementSibling;
-      if (container.style.display === 'block') {
-        container.style.display = 'none';
-        el.textContent = `💬 Comments (${container.children.length - 1}) ▼`;
-      } else {
-        container.style.display = 'block';
-        el.textContent = `💬 Comments (${container.children.length - 1}) ▲`;
+    const username = localStorage.getItem('users') || 'Guest';
+
+    products.forEach(p => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.innerHTML = `
+      ${p.img ? `<img src="${p.img}" alt="">` : ''}
+      <div class="info">
+        <h3>${p.name}</h3>
+        <div class="meta">₹${p.price}</div>
+        <div class="meta"><i class='bx bx-map'></i> ${p.location}</div>
+        <div class="meta"><i class='bx bxs-user'></i> ${p.admin} • ${p.adminPanchayath}</div>
+        <div class="meta"><i class='bx bxs-calendar' ></i> ${formatDate(p.uploadedAt)}</div>
+      </div>
+      <div class="actions">
+        <button data-id="${p.uploadedAt}">
+          Comments (<span>0</span>)
+        </button>
+        <div class="comments" id="c${p.uploadedAt}">
+          <div class="comment-list"></div>
+          ${currentUser ? `
+          <form class="comment-form">
+            <input type="text" placeholder="Add comment…" required />
+            <button type="submit">Post</button>
+          </form>` : '<p style="margin:0.4rem 0;font-size:0.9rem;color:#555;">Log in to comment</p>'}
+        </div>
+      </div>`;
+      grid.appendChild(div);
+
+      const pid = String(p.uploadedAt);
+      const btn = div.querySelector('button');
+      const span = btn.querySelector('span');
+      const cbox = div.querySelector('.comments');
+      const list = div.querySelector('.comment-list');
+
+      function render() {
+        list.innerHTML = '';
+        const arr = commentsDb[pid] || [];
+        span.textContent = arr.length;
+        arr.forEach((c, i) => {
+          const cdiv = document.createElement('div');
+          cdiv.className = 'comment';
+          cdiv.innerHTML = `<b>${c.author}</b>: ${c.text}`;
+          if (c.replies) {
+            c.replies.forEach(r => {
+              const rdiv = document.createElement('div');
+              rdiv.className = 'reply';
+              rdiv.innerHTML = `<b>${r.author}</b>: ${r.text}`;
+              cdiv.appendChild(rdiv);
+            });
+          }
+          if (currentUser) {
+            const replyBtn = document.createElement('button');
+            replyBtn.textContent = 'Reply';
+            replyBtn.style.fontSize = '0.8rem';
+            replyBtn.onclick = () => {
+              const input = document.createElement('input');
+              input.type = 'text';
+              input.placeholder = 'Reply…';
+              input.style.margin = '0.3rem 0';
+              const send = document.createElement('button');
+              send.textContent = 'Send';
+              send.style.marginLeft = '0.4rem';
+              cdiv.appendChild(input);
+              cdiv.appendChild(send);
+              send.onclick = () => {
+                if (!c.replies) c.replies = [];
+                c.replies.push({ author: localStorage.getItem('currentUser'), text: input.value.trim() });
+                localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsDb));
+                render();
+              };
+            };
+            cdiv.appendChild(replyBtn);
+          }
+          list.appendChild(cdiv);
+        });
       }
-    }
+      render();
 
-    // Add comment
-    function addComment(prodIndex) {
-      const textarea = document.getElementById(`new-comment-${prodIndex}`);
-      const text = textarea.value.trim();
-      if (!text) return alert("Comment cannot be empty.");
+      btn.onclick = () => cbox.classList.toggle('visible');
 
-      let comments = JSON.parse(localStorage.getItem("comments_" + prodIndex)) || [];
-      comments.push({ text, reply: null, time: Date.now() });
-      localStorage.setItem("comments_" + prodIndex, JSON.stringify(comments));
-      textarea.value = "";
-      renderProducts();
-    }
-
-    // Delete comment
-    function deleteComment(prodIndex, commentIndex) {
-      if (!confirm("Delete this comment?")) return;
-      let comments = JSON.parse(localStorage.getItem("comments_" + prodIndex)) || [];
-      comments.splice(commentIndex, 1);
-      localStorage.setItem("comments_" + prodIndex, JSON.stringify(comments));
-      renderProducts();
-    }
-
-    // Edit comment
-    function editComment(prodIndex, commentIndex, btn) {
-      const commentDiv = btn.closest('.comment-item');
-      const commentTextDiv = commentDiv.querySelector('.comment-text');
-      if (btn.textContent === "Edit") {
-        // Switch to textarea for editing
-        const currentText = commentTextDiv.textContent;
-        commentTextDiv.innerHTML = `<textarea id="edit-textarea-${prodIndex}-${commentIndex}" style="width:100%;height:50px;">${currentText}</textarea>`;
-        btn.textContent = "Save";
-      } else {
-        // Save edited text
-        const textarea = document.getElementById(`edit-textarea-${prodIndex}-${commentIndex}`);
-        const newText = textarea.value.trim();
-        if (!newText) return alert("Comment cannot be empty.");
-
-        let comments = JSON.parse(localStorage.getItem("comments_" + prodIndex)) || [];
-        comments[commentIndex].text = newText;
-        localStorage.setItem("comments_" + prodIndex, JSON.stringify(comments));
-        renderProducts();
+      const form = div.querySelector('.comment-form');
+      if (form) {
+        form.onsubmit = e => {
+          e.preventDefault();
+          const text = form.querySelector('input').value.trim();
+          if (!text) return;
+          commentsDb[pid] = commentsDb[pid] || [];
+          commentsDb[pid].push({ author: localStorage.getItem('currentUser'), text });
+          localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsDb));
+          form.reset();
+          render();
+        };
       }
-    }
-
-    // Add admin reply
-    function addReply(prodIndex, commentIndex) {
-      const textarea = document.getElementById(`reply-textarea-${prodIndex}-${commentIndex}`);
-      const replyText = textarea.value.trim();
-      if (!replyText) return alert("Reply cannot be empty.");
-
-      let comments = JSON.parse(localStorage.getItem("comments_" + prodIndex)) || [];
-      if (comments[commentIndex]) {
-        comments[commentIndex].reply = replyText;
-        localStorage.setItem("comments_" + prodIndex, JSON.stringify(comments));
-        renderProducts();
-      }
-    }
-
-    // Sell form submission
-    sellForm.addEventListener('submit', e => {
-      e.preventDefault();
-      formError.textContent = '';
-
-      const name = sellForm.productName.value.trim();
-      const price = parseFloat(sellForm.productPrice.value);
-      const img = sellForm.productImage.value.trim();
-      const panchayath = sellForm.panchayath.value;
-      const location = sellForm.location.value.trim();
-      const phone = sellForm.phone.value.trim();
-      const durationMins = parseInt(sellForm.duration.value);
-
-      // Validation
-      if (!name || !price || !img || !panchayath || !durationMins) {
-        formError.textContent = "Please fill all required fields properly.";
-        return;
-      }
-      if (phone && !/^\+91\d{}$/.test(phone)) {
-        formError.textContent = "Phone number must be 10 digits starting with +91.";
-        return;
-      }
-      if (durationMins < 1 || durationMins > 43200) {
-        formError.textContent = "Duration must be between 1 and 43200 minutes.";
-        return;
-      }
-
-      const products = JSON.parse(localStorage.getItem("products")) || [];
-      products.push({
-        name, price, img, panchayath, location,
-        phone: phone || "N/A",
-        uploadTime: Date.now(),
-        duration: durationMins * 60 * 1000 // convert minutes to ms
-      });
-
-      localStorage.setItem("products", JSON.stringify(products));
-      sellForm.reset();
-      sellForm.panchayath.value = "Kurampala"; // reset default
-      alert("Product uploaded successfully!");
-      renderProducts();
     });
-
-    // Filters events
-    searchInput.addEventListener("input", renderProducts);
-    panchayathFilter.addEventListener("change", renderProducts);
-
-    // Initial render
-    window.addEventListener("load", renderProducts);
   </script>
-
 </body>
 
 </html>
