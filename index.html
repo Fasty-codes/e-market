@@ -2,442 +2,448 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>E-Market Kurampala</title>
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: sans-serif;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Market</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Cambria, serif;
+        }
 
-    body {
-      background: #f3f4f6;
-      color: #111;
-    }
+        body {
+            background: #f3f4f6;
+            color: #111;
+        }
 
-    nav {
-      background: #2e7d32;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+        nav {
+            background: #0abf43;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
 
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+           margin-left: 10%;
+            flex-wrap: wrap;
+        }
 
-    .nav-left strong {
-      color: white;
-      font-size: 20px;
-    }
+        .nav-left span {
+            color: white;
+            font-size: 30px;
+        }
 
-    .dropdown {
-      background: white;
-      padding: 5px;
-      border-radius: 5px;
-    }
+        .dropdown {
+            background: white;
+            padding: 5px;
+            border-radius: 5px;
+        }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-right: 10%;
+        }
 
-    .nav-links button,
-    .nav-links a {
-      background: transparent;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      text-decoration: none;
-    }
+        .nav-links button,
+        .nav-links a {
+            background: transparent;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+        }
 
-    .menu-toggle {
-      display: none;
-      font-size: 28px;
-      color: white;
-    }
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            color: white;
+        }
 
-    .nav-mobile {
-      display: none;
-      flex-direction: column;
-      width: 100%;
-      background: #388e3c;
-    }
+        .nav-mobile {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background: #388e3c;
+        }
 
-    .nav-mobile button {
-      padding: 10px;
-      text-align: left;
-      background: none;
-      border: none;
-      color: white;
-      width: 100%;
-      font-size: 16px;
-    }
+        .nav-mobile button {
+            padding: 10px;
+            text-align: left;
+            background: none;
+            border: none;
+            color: white;
+            width: 100%;
+            font-size: 16px;
+        }
 
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
 
-      .menu-toggle {
-        display: block;
-      }
+            .menu-toggle {
+                display: block;
+            }
 
-      .nav-mobile.show {
-        display: flex;
-      }
-    }
+            .nav-mobile.show {
+                display: flex;
+            }
+        }
 
-    section {
-      display: none;
-      padding: 20px;
-    }
+        section {
+            display: none;
+            padding: 20px;
+        }
 
-    .visible {
-      display: block !important;
-    }
+        .visible {
+            display: block !important;
+        }
 
-    .full-screen {
-      height: 100vh;
-      overflow-y: auto;
-    }
+        .full-screen {
+            height: 100vh;
+            overflow-y: auto;
+        }
 
-    .popup {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #333;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 5px;
-      display: none;
-      z-index: 999;
-    }
+        .popup {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none;
+            z-index: 999;
+        }
 
-    .hero {
-      padding: 60px 20px;
-      text-align: center;
-      background: #e8f5e9;
-    }
+        .hero {
+            padding: 60px 20px;
+            text-align: center;
+            background: #e8f5e9;
+        }
 
-    .hero h1 {
-      margin-bottom: 10px;
-      font-size: 2rem;
-    }
+        .hero h1 {
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
 
-    .hero p {
-      margin-bottom: 20px;
-      font-size: 1rem;
-    }
+        .hero p {
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
 
-    .hero button {
-      margin: 0 10px;
-      padding: 10px 20px;
-      border: none;
-      background: #2e7d32;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+        .hero button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            border: none;
+            background: #0abf43;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-    .hero button:disabled {
-      background: #9e9e9e;
-      cursor: not-allowed;
-    }
+        .hero button:disabled {
+            background: #9e9e9e;
+            cursor: not-allowed;
+        }
 
-    .form-container {
-      max-width: 400px;
-      margin: auto;
-      padding: 20px;
-      background: white;
-      border-radius: 10px;
-    }
+        .form-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+        }
 
-    .form-container h2 {
-      text-align: center;
-      margin-bottom: 15px;
-    }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
 
-    .form-container input,
-    .form-container select {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
+        .form-container input,
+        .form-container select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-    .product-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      padding: 10px;
-    }
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            padding: 10px;
+        }
 
-    .product {
-      background: white;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      width: 200px;
-    }
+        .product {
+            background: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 200px;
+        }
 
-    .product img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-    }
-  </style>
+        .product img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="popup" id="popup-msg"></div>
+    <div class="popup" id="popup-msg"></div>
 
-  <nav>
-    <div class="nav-left">
-      <strong>E-Market</strong>
-      <select id="panchayath-select" class="dropdown">
-        <option selected>Kurampala</option>
-        <option>Palamel</option>
-      </select>
-      <div class="nav-links">
+    <nav>
+        <div class="nav-left">
+            <span>E-Market</span>
+            <!-- <select id="panchayath-filter">
+                <option value="All">All Panchayaths</option>
+                <option value="Kurampala">Kurampala</option>
+                <option value="Pandalam">Palamel</option>
+            </select> -->
+
+           
+        </div> <div class="nav-links">
+                <button onclick="showSection('home')">Home</button>
+                <button onclick="showSection('sell')" id="sell-btn" disabled>Sell</button>
+                <button><a href="market.html">Market</a></button>
+                <button onclick="showSection('contact')">Contact</button>
+                <button id="login-btn" onclick="showSection('login')">Login</button>
+                <button id="signup-btn" onclick="showSection('signup')">Signup</button>
+                <button id="logout-btn" onclick="logout()" style="display:none;">Logout</button>
+            </div>
+
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class='bx bx-menu'></i>
+        </div>
+    </nav>
+
+    <div class="nav-mobile" id="mobile-nav">
         <button onclick="showSection('home')">Home</button>
-        <button onclick="showSection('sell')" id="sell-btn" disabled>Sell</button>
-        <a href="market.html">Market</a>
+        <button onclick="showSection('sell')" id="mobile-sell-btn" disabled>Sell</button>
+        <button><a href="market.html">Market</a></button>
         <button onclick="showSection('contact')">Contact</button>
-        <button id="login-btn" onclick="showSection('login')">Login</button>
-        <button id="signup-btn" onclick="showSection('signup')">Signup</button>
-        <button id="logout-btn" onclick="logout()" style="display:none;">Logout</button>
-      </div>
+        <button id="mobile-login-btn">Login</button>
+        <button id="mobile-signup-btn">Signup</button>
+        <button id="mobile-logout-btn" style="display:none;">Logout</button>
     </div>
 
-    <div class="menu-toggle" onclick="toggleMenu()">
-      <i class='bx bx-menu'></i>
-    </div>
-  </nav>
+    <section id="home" class="visible">
+        <div class="hero">
+            <h1>Welcome to E-Market</h1>
+            <p>Buy, sell and exchange goods in your Panchayath</p>
+            <button onclick="showSection('market')">Explore</button>
+            <button id="hero-sell-btn" disabled onclick="showSection('sell')">Sell</button>
+        </div>
+        <div class="product-list" id="product-list"></div>
+    </section>
 
-  <div class="nav-mobile" id="mobile-nav">
-    <button onclick="showSection('home')">Home</button>
-    <button onclick="showSection('sell')" id="mobile-sell-btn" disabled>Sell</button>
-    <button onclick="showSection('contact')">Contact</button>
-    <button id="mobile-login-btn">Login</button>
-    <button id="mobile-signup-btn">Signup</button>
-    <button id="mobile-logout-btn" style="display:none;">Logout</button>
-  </div>
+    <section id="login" class="full-screen">
+        <div class="form-container">
+            <h2>Login</h2>
+            <input type="text" id="login-name" placeholder="Name" />
+            <input type="password" id="login-pass" placeholder="Password" />
+            <button onclick="login()">Login</button>
+        </div>
+    </section>
 
-  <section id="home" class="visible">
-    <div class="hero">
-      <h1>Welcome to E-Market</h1>
-      <p>Buy, sell and exchange goods in your Panchayath</p>
-      <button onclick="showSection('market')">Explore</button>
-      <button id="hero-sell-btn" disabled onclick="showSection('sell')">Sell</button>
-    </div>
-    <div class="product-list" id="product-list"></div>
-  </section>
+    <section id="signup" class="full-screen">
+        <div class="form-container">
+            <h2>Signup</h2>
+            <input type="text" id="signup-name" placeholder="Name" />
+            <select id="signup-panchayath">
+                <option>Kurampala</option>
+                <option>Palamel</option>
+            </select>
+            <input type="text" id="signup-place" placeholder="Place" />
+            <input type="password" id="signup-pass" placeholder="Password" />
+            <button onclick="signup()">Signup</button>
+        </div>
+    </section>
 
-  <section id="login" class="full-screen">
-    <div class="form-container">
-      <h2>Login</h2>
-      <input type="text" id="login-name" placeholder="Name" />
-      <input type="password" id="login-pass" placeholder="Password" />
-      <button onclick="login()">Login</button>
-    </div>
-  </section>
+    <section id="sell" class="full-screen">
+        <div class="form-container">
+            <h2>Sell Product</h2>
+            <input type="file" id="product-img" accept="image/*" />
+            <input type="text" id="product-name" placeholder="Product Name" required />
+            <input type="number" id="product-price" placeholder="Price (₹)" min="0" />
+            <input type="text" id="product-location" placeholder="Location" required />
+            <input type="tel" id="product-phone" placeholder="Phone Number (10 digits)" pattern="[0-9]{10}"
+                maxlength="10" required />
+            <button onclick="uploadProduct()">Upload</button>
+        </div>
+    </section>
 
-  <section id="signup" class="full-screen">
-    <div class="form-container">
-      <h2>Signup</h2>
-      <input type="text" id="signup-name" placeholder="Name" />
-      <select id="signup-panchayath">
-        <option>Kurampala</option>
-        <option>Palamel</option>
-      </select>
-      <input type="text" id="signup-place" placeholder="Place" />
-      <input type="password" id="signup-pass" placeholder="Password" />
-      <button onclick="signup()">Signup</button>
-    </div>
-  </section>
+    <section id="contact">
+        <div class="form-container">
+            <h2>Contact</h2>
+            <p>Email us at emarket@kerala.gov.in</p>
+        </div>
+    </section>
 
-  <section id="sell" class="full-screen">
-    <div class="form-container">
-      <h2>Sell Product</h2>
-      <input type="file" id="product-img" accept="image/*" />
-      <input type="text" id="product-name" placeholder="Product Name" required />
-      <input type="number" id="product-price" placeholder="Price (₹)" min="0" />
-      <input type="text" id="product-location" placeholder="Location" required />
-      <input type="tel" id="product-phone" placeholder="Phone Number (10 digits)" pattern="[0-9]{10}" maxlength="10"
-        required />
-      <button onclick="uploadProduct()">Upload</button>
-    </div>
-  </section>
+    <script>
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        let currentUser = localStorage.getItem("currentUser");
 
-  <section id="contact">
-    <div class="form-container">
-      <h2>Contact</h2>
-      <p>Email us at emarket@kerala.gov.in</p>
-    </div>
-  </section>
+        const showPopup = (msg) => {
+            const popup = document.getElementById("popup-msg");
+            popup.textContent = msg;
+            popup.style.display = "block";
+            setTimeout(() => popup.style.display = "none", 2500);
+        };
 
-  <script>
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-    let currentUser = localStorage.getItem("currentUser");
+        const showSection = (id) => {
+            document.querySelectorAll("section").forEach(s => s.classList.remove("visible"));
+            document.getElementById(id).classList.add("visible");
+            document.getElementById("mobile-nav").classList.remove("show");
+        };
 
-    const showPopup = (msg) => {
-      const popup = document.getElementById("popup-msg");
-      popup.textContent = msg;
-      popup.style.display = "block";
-      setTimeout(() => popup.style.display = "none", 2500);
-    };
+        const toggleMenu = () => {
+            document.getElementById("mobile-nav").classList.toggle("show");
+        };
 
-    const showSection = (id) => {
-      document.querySelectorAll("section").forEach(s => s.classList.remove("visible"));
-      document.getElementById(id).classList.add("visible");
-      document.getElementById("mobile-nav").classList.remove("show");
-    };
+        const updateUI = () => {
+            const isLoggedIn = !!currentUser;
+            document.getElementById("sell-btn").disabled = !isLoggedIn;
+            document.getElementById("mobile-sell-btn").disabled = !isLoggedIn;
+            document.getElementById("hero-sell-btn").disabled = !isLoggedIn;
 
-    const toggleMenu = () => {
-      document.getElementById("mobile-nav").classList.toggle("show");
-    };
+            document.getElementById("login-btn").style.display = isLoggedIn ? "none" : "inline";
+            document.getElementById("signup-btn").style.display = isLoggedIn ? "none" : "inline";
+            document.getElementById("logout-btn").style.display = isLoggedIn ? "inline" : "none";
 
-    const updateUI = () => {
-      const isLoggedIn = !!currentUser;
-      document.getElementById("sell-btn").disabled = !isLoggedIn;
-      document.getElementById("mobile-sell-btn").disabled = !isLoggedIn;
-      document.getElementById("hero-sell-btn").disabled = !isLoggedIn;
+            document.getElementById("mobile-login-btn").style.display = isLoggedIn ? "none" : "block";
+            document.getElementById("mobile-signup-btn").style.display = isLoggedIn ? "none" : "block";
+            document.getElementById("mobile-logout-btn").style.display = isLoggedIn ? "block" : "none";
+        };
 
-      document.getElementById("login-btn").style.display = isLoggedIn ? "none" : "inline";
-      document.getElementById("signup-btn").style.display = isLoggedIn ? "none" : "inline";
-      document.getElementById("logout-btn").style.display = isLoggedIn ? "inline" : "none";
+        const login = () => {
+            const name = document.getElementById("login-name").value.trim();
+            const pass = document.getElementById("login-pass").value.trim();
+            const user = users.find(u => u.name === name && u.pass === pass);
+            if (user) {
+                currentUser = user;
+                localStorage.setItem("currentUser", JSON.stringify(user));
+                showPopup("Login successful");
+                showSection("home");
+                updateUI();
+            } else {
+                showPopup("Invalid login");
+            }
+        };
 
-      document.getElementById("mobile-login-btn").style.display = isLoggedIn ? "none" : "block";
-      document.getElementById("mobile-signup-btn").style.display = isLoggedIn ? "none" : "block";
-      document.getElementById("mobile-logout-btn").style.display = isLoggedIn ? "block" : "none";
-    };
+        const signup = () => {
+            const name = document.getElementById("signup-name").value.trim();
+            const pass = document.getElementById("signup-pass").value.trim();
+            const place = document.getElementById("signup-place").value.trim();
+            const panchayath = document.getElementById("signup-panchayath").value;
+            if (!name || !pass || !place) {
+                showPopup("Please fill in all fields");
+                return;
+            }
+            if (users.some(u => u.name === name)) {
+                showPopup("Username already exists");
+                return;
+            }
+            users.push({ name, pass, place, panchayath });
+            localStorage.setItem("user", JSON.stringify(user));
+            showPopup("Signup successful");
+            showSection("login");
+        };
 
-    const login = () => {
-      const name = document.getElementById("login-name").value.trim();
-      const pass = document.getElementById("login-pass").value.trim();
-      const user = users.find(u => u.name === name && u.pass === pass);
-      if (user) {
-        currentUser = name;
-        localStorage.setItem("currentUser", name);
-        showPopup("Login successful");
-        showSection("home");
-        updateUI();
-      } else {
-        showPopup("Invalid login");
-      }
-    };
+        const logout = () => {
+            if (confirm("Do you want to logout?")) {
+                currentUser = null;
+                localStorage.removeItem("currentUser");
+                showPopup("Logged out");
+                updateUI();
+                showSection("home");
+            }
+        };
 
-    const signup = () => {
-      const name = document.getElementById("signup-name").value.trim();
-      const pass = document.getElementById("signup-pass").value.trim();
-      const place = document.getElementById("signup-place").value.trim();
-      const panchayath = document.getElementById("signup-panchayath").value;
-      if (!name || !pass || !place) {
-        showPopup("Please fill in all fields");
-        return;
-      }
-      if (users.some(u => u.name === name)) {
-        showPopup("User name already exists");
-        return;
-      }
-      users.push({ name, pass, place, panchayath });
-      localStorage.setItem("users", JSON.stringify(users));
-      showPopup("Signup successful");
-      showSection("login");
-    };
+        const uploadProduct = () => {
+            const img = document.getElementById("product-img").files[0];
+            const name = document.getElementById("product-name").value.trim();
+            const price = document.getElementById("product-price").value.trim();
+            const location = document.getElementById("product-location").value.trim();
+            let phone = document.getElementById("product-phone").value.trim();
 
-    const logout = () => {
-      if (confirm("Do you want to logout?")) {
-        currentUser = null;
-        localStorage.removeItem("currentUser");
-        showPopup("Logged out");
-        updateUI();
-        showSection("home");
-      }
-    };
+            if (!/^\d{10}$/.test(phone)) {
+                showPopup("Enter a valid 10-digit phone number");
+                return;
+            }
 
-    const uploadProduct = () => {
-      const img = document.getElementById("product-img").files[0];
-      const name = document.getElementById("product-name").value.trim();
-      const price = document.getElementById("product-price").value.trim();
-      const location = document.getElementById("product-location").value.trim();
-      let phone = document.getElementById("product-phone").value.trim();
+            phone = "+91 " + phone;
 
-      if (!/^\d{10}$/.test(phone)) {
-        showPopup("Enter a valid 10-digit phone number");
-        return;
-      }
+            if (!name || !location) {
+                showPopup("Please fill in all required fields");
+                return;
+            }
 
-      phone = "+91 " + phone;
+            const reader = new FileReader();
+            reader.onload = function () {
+                const product = { img: reader.result || null, name, price, location, phone, uploadedAt: Date.now() };
+                const products = JSON.parse(localStorage.getItem("products")) || [];
+                products.push(product);
+                localStorage.setItem("products", JSON.stringify(products));
+                showPopup("Product uploaded");
+                showSection("home");
 
-      if (!name || !location) {
-        showPopup("Please fill in all required fields");
-        return;
-      }
+                document.getElementById("product-img").value = "";
+                document.getElementById("product-name").value = "";
+                document.getElementById("product-price").value = "";
+                document.getElementById("product-location").value = "";
+                document.getElementById("product-phone").value = "";
 
-      const reader = new FileReader();
-      reader.onload = function () {
-        const product = { img: reader.result || null, name, price, location, phone, uploadedAt: Date.now() };
-        const products = JSON.parse(localStorage.getItem("products")) || [];
-        products.push(product);
-        localStorage.setItem("products", JSON.stringify(products));
-        showPopup("Product uploaded");
-        showSection("home");
+                displayProducts();
+            };
+            if (img) reader.readAsDataURL(img);
+            else reader.onload();
+        };
 
-        document.getElementById("product-img").value = "";
-        document.getElementById("product-name").value = "";
-        document.getElementById("product-price").value = "";
-        document.getElementById("product-location").value = "";
-        document.getElementById("product-phone").value = "";
+        const displayProducts = () => {
 
-        displayProducts();
-      };
-      if (img) reader.readAsDataURL(img);
-      else reader.onload();
-    };
+            const list = document.getElementById("product-list");
+            const products = JSON.parse(localStorage.getItem("products")) || [];
 
-    const displayProducts = () => {
-      const list = document.getElementById("product-list");
-      const products = JSON.parse(localStorage.getItem("products")) || [];
+            const now = Date.now();
+            const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
+            const filteredProducts = products.filter(p => now - p.uploadedAt < THIRTY_DAYS_MS);
+            if (filteredProducts.length !== products.length) {
+                localStorage.setItem("products", JSON.stringify(filteredProducts));
+            }
 
-      const now = Date.now();
-      const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
-      const filteredProducts = products.filter(p => now - p.uploadedAt < THIRTY_DAYS_MS);
-      if (filteredProducts.length !== products.length) {
-        localStorage.setItem("products", JSON.stringify(filteredProducts));
-      }
-
-      list.innerHTML = "";
-      filteredProducts.forEach(p => {
-        list.innerHTML += `
+            list.innerHTML = "";
+            filteredProducts.forEach(p => {
+                list.innerHTML += `
           <div class="product">
             ${p.img ? `<img src="${p.img}">` : ""}
             <h4>${p.name}</h4>
             <p>₹${p.price || "N/A"}</p>
-            <p>${p.location}</p>
-            <p>📞 ${p.phone}</p>
+            <p><i class='bx bxs-map' ></i>${p.location}</p>
+            <p><i class='bx bxs-phone'></i> ${p.phone}</p>
           </div>`;
-      });
-    };
+            });
+        };
 
-    updateUI();
-    displayProducts();
-  </script>
+        updateUI();
+        displayProducts();
+    </script>
 </body>
 
 </html>

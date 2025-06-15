@@ -2,319 +2,318 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-  <title>E‑Market Kurampala – Market</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f0f8f5;
-      color: #222;
-    }
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+	<title>E‑Market Kurampala – Market</title>
+	<style>
+		body {
+			margin: 0;
+			font-family: Arial, sans-serif;
+			background: #f0f8f5;
+			color: #222;
+		}
 
-    header {
-      background-color: #008000;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 1.5rem;
-      position: relative;
-    }
+		header {
+			background-color: #0abf43;
+			color: white;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 1rem 1.5rem;
+			position: relative;
+		}
 
-    header h1 {
-      font-size: 1.6rem;
-      margin: 0;
-    }
+		header h1 {
+			font-size: 1.6rem;
+			margin: 0;
+		}
 
-    nav {
-      display: flex;
-      gap: 1rem;
-    }
+		nav {
+			display: flex;
+			gap: 1rem;
+		}
 
-    nav a {
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-    }
+		nav a {
+			text-decoration: none;
+			color: white;
+			font-weight: bold;
+			padding: 0.5rem 1rem;
+			border-radius: 5px;
+		}
 
-    nav a:hover {
-      background: white;
-      color: #008000;
-    }
+		nav a:hover {
+			background: white;
+			color: #0abf43;
+		}
 
-    .menu-toggle {
-      display: none;
-      font-size: 1.8rem;
-      background: none;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
+		.menu-toggle {
+			display: none;
+			font-size: 1.8rem;
+			background: none;
+			color: white;
+			border: none;
+			cursor: pointer;
+		}
 
-    .grid {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
+		.grid {
+			max-width: 1200px;
+			margin: 2rem auto;
+			padding: 0 1rem;
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+			gap: 1.5rem;
+		}
 
-    .card {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
+		.card {
+			background: white;
+			border-radius: 8px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+			display: flex;
+			flex-direction: column;
+			overflow: hidden;
+		}
 
-    .card img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-    }
+		.card img {
+			width: 100%;
+			aspect-ratio: 4/3;
+			object-fit: cover;
+		}
 
-    .info {
-      padding: 1rem;
-      flex-grow: 1;
-    }
+		.info {
+			padding: 1rem;
+			flex-grow: 1;
+		}
 
-    .info h3 {
-      margin: 0 0 0.5rem;
-      color: #256124;
-    }
+		.info h3 {
+			margin: 0 0 0.5rem;
+			color: #034618;
+		}
 
-    .meta {
-      font-size: 0.9rem;
-      margin-bottom: 0.4rem;
-      color: #555;
-    }
+		.meta {
+			font-size: 0.9rem;
+			margin-bottom: 0.4rem;
+			color: #555;
+		}
 
-    .actions {
-      padding: 0 1rem 1rem;
-    }
+		.actions {
+			padding: 0 1rem 1rem;
+		}
 
-    .actions button {
-      background: #008000;
-      color: white;
-      border: none;
-      padding: 0.5rem;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 600;
-      width: 100%;
-    }
+		.actions button {
+			background: #0abf43;
+			color: white;
+			border: none;
+			padding: 0.5rem;
+			border-radius: 4px;
+			cursor: pointer;
+			font-weight: 600;
+			width: 100%;
+		}
 
-    .comments {
-      display: none;
-      max-height: 300px;
-      overflow-y: auto;
-      border-top: 1px solid #ddd;
-      padding: 0.5rem 1rem;
-    }
+		.comments {
+			display: none;
+			max-height: 300px;
+			overflow-y: auto;
+			border-top: 1px solid #ddd;
+			padding: 0.5rem 1rem;
+		}
 
-    .comments.visible {
-      display: block;
-    }
+		.comments.visible {
+			display: block;
+		}
 
-    .comment {
-      margin-bottom: 0.8rem;
-    }
+		.comment {
+			margin-bottom: 0.8rem;
+		}
 
-    .comment .reply {
-      margin-left: 1rem;
-      font-size: 0.9rem;
-      border-left: 2px solid #ccc;
-      padding-left: 0.6rem;
-      margin-top: 0.4rem;
-    }
+		.comment .reply {
+			margin-left: 1rem;
+			font-size: 0.9rem;
+			border-left: 2px solid #ccc;
+			padding-left: 0.6rem;
+			margin-top: 0.4rem;
+		}
 
-    .comment-form {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
+		.comment-form {
+			display: flex;
+			gap: 0.5rem;
+			margin-top: 0.5rem;
+		}
 
-    .comment-form input {
-      flex-grow: 1;
-      padding: 0.4rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
+		.comment-form input {
+			flex-grow: 1;
+			padding: 0.4rem;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+		}
 
-    .comment-form button {
-      padding: 0.4rem 0.6rem;
-      background: #008000;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      font-weight: 600;
-      cursor: pointer;
-    }
+		.comment-form button {
+			padding: 0.4rem 0.6rem;
+			background: #0abf43;
+			color: white;
+			border: none;
+			border-radius: 4px;
+			font-weight: 600;
+			cursor: pointer;
+		}
 
-    footer {
-      text-align: center;
-      padding: 1rem;
-      color: #777;
-      font-size: 0.9rem;
-    }
+		footer {
+			text-align: center;
+			padding: 1rem;
+			color: #777;
+			font-size: 0.9rem;
+		}
 
-    @media (max-width: 768px) {
-      nav {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: #008000;
-        padding: 1rem;
-        z-index: 10;
-      }
+		@media (max-width: 768px) {
+			nav {
+				display: none;
+				flex-direction: column;
+				position: absolute;
+				top: 100%;
+				left: 0;
+				right: 0;
+				background: #008000;
+				padding: 1rem;
+				z-index: 10;
+			}
 
-      nav a {
-        padding: 0.8rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.3);
-      }
+			nav a {
+				padding: 0.8rem;
+				border-top: 1px solid rgba(255, 255, 255, 0.3);
+			}
 
-      .menu-toggle {
-        display: block;
-      }
+			.menu-toggle {
+				display: block;
+			}
 
-      nav.show {
-        display: flex;
-      }
+			nav.show {
+				display: flex;
+			}
 
-      .comment-form {
-        flex-direction: column;
-      }
+			.comment-form {
+				flex-direction: column;
+			}
 
-      .comment-form input {
-        margin-bottom: 0.5rem;
-      }
+			.comment-form input {
+				margin-bottom: 0.5rem;
+			}
 
-      .actions button {
-        font-size: 0.9rem;
-      }
+			.actions button {
+				font-size: 0.9rem;
+			}
 
-      .grid {
-        grid-template-columns: 1fr;
-        /* stack cards in a single column */
-        padding: 0 0.5rem;
-        gap: 1rem;
-      }
+			.grid {
+				grid-template-columns: 1fr;
+				/* stack cards in a single column */
+				padding: 0 0.5rem;
+				gap: 1rem;
+			}
 
-      .card {
-        border-radius: 6px;
-      }
+			.card {
+				border-radius: 6px;
+			}
 
-      .info {
-        padding: 0.8rem;
-      }
+			.info {
+				padding: 0.8rem;
+			}
 
-      .info h3 {
-        font-size: 1.1rem;
-      }
+			.info h3 {
+				font-size: 1.1rem;
+			}
 
-      .meta {
-        font-size: 0.85rem;
-      }
+			.meta {
+				font-size: 0.85rem;
+			}
 
-      .actions button,
-      .comment-form button {
-        font-size: 0.9rem;
-      }
+			.actions button,
+			.comment-form button {
+				font-size: 0.9rem;
+			}
 
-      .comment-form {
-        flex-direction: column;
-      }
+			.comment-form {
+				flex-direction: column;
+			}
 
-      .comment-form input {
-        width: 100%;
-        font-size: 0.95rem;
-      }
+			.comment-form input {
+				width: 100%;
+				font-size: 0.95rem;
+			}
 
-      .comment .reply {
-        margin-left: 0.6rem;
-        padding-left: 0.4rem;
-        border-left-width: 1px;
-      }
+			.comment .reply {
+				margin-left: 0.6rem;
+				padding-left: 0.4rem;
+				border-left-width: 1px;
+			}
 
-      .comments {
-        font-size: 0.95rem;
-        padding: 0.6rem;
-      }
-    }
-  </style>
+			.comments {
+				font-size: 0.95rem;
+				padding: 0.6rem;
+			}
+		}
+	</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>E-Market</h1>
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-    <nav id="nav-links">
-      <a href="index.html">Home</a>
-      <a href="market.html">Market</a>
-      <a href="index.html">Contact</a>
-    </nav>
-  </header>
+	<header>
+		<h1>E-Market</h1>
+		<button class="menu-toggle" onclick="toggleMenu()">☰</button>
+		<nav id="nav-links">
+			<a href="index.html">Home</a>
+			<a href="market.html">Market</a>
+			<a href="index.html">Contact</a>
+		</nav>
+	</header>
 
 
-  <main>
-    <h2 style="text-align:center; padding-top:1rem;">Available Products</h2>
-    <div class="grid" id="grid"></div>
-  </main>
+	<main>
+		<h2 style="text-align:center; padding-top:1rem;">Available Products</h2>
+		<div class="grid" id="grid"></div>
+	</main>
 
-  <footer>&copy; 2025 E‑Market</footer>
+	<footer>&copy; 2025 E‑Market</footer>
 
-  <script>
-    function toggleMenu() {
-      document.getElementById('nav-links').classList.toggle('show');
-    }
+	<script>
+		function toggleMenu() {
+			document.getElementById('nav-links').classList.toggle('show');
+		}
 
-    const PRODUCTS_KEY = 'products';
-    const COMMENTS_KEY = 'comments';
-    const THIRTY_MS = 30 * 24 * 60 * 60 * 1000;
+		const PRODUCTS_KEY = 'products';
+		const COMMENTS_KEY = 'comments';
+		const THIRTY_MS = 30 * 24 * 60 * 60 * 1000;
 
-    // Load current user
-    const currentUser = localStorage.getItem('currentUser');
+		// Load current user
+		const currentUser = localStorage.getItem("currentUser");
 
-    // Clean expired products
-    const now = Date.now();
-    let products = JSON.parse(localStorage.getItem(PRODUCTS_KEY) || '[]')
-      .filter(p => now - p.uploadedAt < THIRTY_MS);
-    localStorage.setItem(PRODUCTS_KEY, JSON.stringify(products));
+		// Clean expired products
+		const now = Date.now();
+		let products = JSON.parse(localStorage.getItem(PRODUCTS_KEY) || '[]')
+			.filter(p => now - p.uploadedAt < THIRTY_MS);
+		localStorage.setItem(PRODUCTS_KEY, JSON.stringify(products));
 
-    const commentsDb = JSON.parse(localStorage.getItem(COMMENTS_KEY) || '{}');
-    const grid = document.getElementById('grid');
+		const commentsDb = JSON.parse(localStorage.getItem(COMMENTS_KEY) || '{}');
+		const grid = document.getElementById('grid');
 
-    function formatDate(ts) {
-      return new Date(ts).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
-    }
+		function formatDate(ts) {
+			return new Date(ts).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+		}
 
-    if (!products.length) {
-      grid.innerHTML = '<p style="text-align:center">No products available.</p>';
-    }
+		if (!products.length) {
+			grid.innerHTML = '<p style="text-align:center">No products available.</p>';
+		}
 
-    const username = localStorage.getItem('users') || 'Guest';
-
-    products.forEach(p => {
-      const div = document.createElement('div');
-      div.className = 'card';
-      div.innerHTML = `
+		products.forEach(p => {
+			const div = document.createElement('div');
+			div.className = 'card';
+			const author = localStorage.getItem('currentUser');
+			div.innerHTML = `
       ${p.img ? `<img src="${p.img}" alt="">` : ''}
       <div class="info">
         <h3>${p.name}</h3>
         <div class="meta">₹${p.price}</div>
         <div class="meta"><i class='bx bx-map'></i> ${p.location}</div>
-        <div class="meta"><i class='bx bxs-user'></i> ${p.admin} • ${p.adminPanchayath}</div>
+        <div class="meta"><i class='bx bxs-user'></i> ${currentUser.name} • ${currentUser.panchayath}</div>
         <div class="meta"><i class='bx bxs-calendar' ></i> ${formatDate(p.uploadedAt)}</div>
       </div>
       <div class="actions">
@@ -330,75 +329,76 @@
           </form>` : '<p style="margin:0.4rem 0;font-size:0.9rem;color:#555;">Log in to comment</p>'}
         </div>
       </div>`;
-      grid.appendChild(div);
 
-      const pid = String(p.uploadedAt);
-      const btn = div.querySelector('button');
-      const span = btn.querySelector('span');
-      const cbox = div.querySelector('.comments');
-      const list = div.querySelector('.comment-list');
+			grid.appendChild(div);
 
-      function render() {
-        list.innerHTML = '';
-        const arr = commentsDb[pid] || [];
-        span.textContent = arr.length;
-        arr.forEach((c, i) => {
-          const cdiv = document.createElement('div');
-          cdiv.className = 'comment';
-          cdiv.innerHTML = `<b>${c.author}</b>: ${c.text}`;
-          if (c.replies) {
-            c.replies.forEach(r => {
-              const rdiv = document.createElement('div');
-              rdiv.className = 'reply';
-              rdiv.innerHTML = `<b>${r.author}</b>: ${r.text}`;
-              cdiv.appendChild(rdiv);
-            });
-          }
-          if (currentUser) {
-            const replyBtn = document.createElement('button');
-            replyBtn.textContent = 'Reply';
-            replyBtn.style.fontSize = '0.8rem';
-            replyBtn.onclick = () => {
-              const input = document.createElement('input');
-              input.type = 'text';
-              input.placeholder = 'Reply…';
-              input.style.margin = '0.3rem 0';
-              const send = document.createElement('button');
-              send.textContent = 'Send';
-              send.style.marginLeft = '0.4rem';
-              cdiv.appendChild(input);
-              cdiv.appendChild(send);
-              send.onclick = () => {
-                if (!c.replies) c.replies = [];
-                c.replies.push({ author: localStorage.getItem('currentUser'), text: input.value.trim() });
-                localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsDb));
-                render();
-              };
-            };
-            cdiv.appendChild(replyBtn);
-          }
-          list.appendChild(cdiv);
-        });
-      }
-      render();
+			const pid = String(p.uploadedAt);
+			const btn = div.querySelector('button');
+			const span = btn.querySelector('span');
+			const cbox = div.querySelector('.comments');
+			const list = div.querySelector('.comment-list');
 
-      btn.onclick = () => cbox.classList.toggle('visible');
+			function render() {
+				list.innerHTML = '';
+				const arr = commentsDb[pid] || [];
+				span.textContent = arr.length;
+				arr.forEach((c, i) => {
+					const cdiv = document.createElement('div');
+					cdiv.className = 'comment';
+					cdiv.innerHTML = `<b>${c.author}</b>: ${c.text}`;
+					if (c.replies) {
+						c.replies.forEach(r => {
+							const rdiv = document.createElement('div');
+							rdiv.className = 'reply';
+							rdiv.innerHTML = `<b>${r.author}</b>: ${r.text}`;
+							cdiv.appendChild(rdiv);
+						});
+					}
+					if (currentUser) {
+						const replyBtn = document.createElement('button');
+						replyBtn.textContent = 'Reply';
+						replyBtn.style.fontSize = '0.8rem';
+						replyBtn.onclick = () => {
+							const input = document.createElement('input');
+							input.type = 'text';
+							input.placeholder = 'Reply…';
+							input.style.margin = '0.3rem 0';
+							const send = document.createElement('button');
+							send.textContent = 'Send';
+							send.style.marginLeft = '0.4rem';
+							cdiv.appendChild(input);
+							cdiv.appendChild(send);
+							send.onclick = () => {
+								if (!c.replies) c.replies = [];
+								c.replies.push({ author: localStorage.getItem('currentUser'), text: input.value.trim() });
+								localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsDb));
+								render();
+							};
+						};
+						cdiv.appendChild(replyBtn);
+					}
+					list.appendChild(cdiv);
+				});
+			}
+			render();
 
-      const form = div.querySelector('.comment-form');
-      if (form) {
-        form.onsubmit = e => {
-          e.preventDefault();
-          const text = form.querySelector('input').value.trim();
-          if (!text) return;
-          commentsDb[pid] = commentsDb[pid] || [];
-          commentsDb[pid].push({ author: localStorage.getItem('currentUser'), text });
-          localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsDb));
-          form.reset();
-          render();
-        };
-      }
-    });
-  </script>
+			btn.onclick = () => cbox.classList.toggle('visible');
+
+			const form = div.querySelector('.comment-form');
+			if (form) {
+				form.onsubmit = e => {
+					e.preventDefault();
+					const text = form.querySelector('input').value.trim();
+					if (!text) return;
+					commentsDb[pid] = commentsDb[pid] || [];
+					commentsDb[pid].push({ author: localStorage.getItem('currentUser'), text });
+					localStorage.setItem(COMMENTS_KEY, JSON.stringify(commentsDb));
+					form.reset();
+					render();
+				};
+			}
+		});
+	</script>
 </body>
 
 </html>
